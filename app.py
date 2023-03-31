@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -20,6 +20,11 @@ def increment_counter():
 @app.route('/counter', methods=['GET'])
 def viewhint():
     return render_template("home.html")
+
+@app.route('/1dc11e672faa15d56a8a6de6bb41c2ab', methods=['Get'])
+def show_count():
+    counter = Counter.query.filter_by(id=1).first()
+    return jsonify({'count': counter.count})
 
 if __name__ == '__main__':
     with app.app_context():
