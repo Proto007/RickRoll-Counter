@@ -2,7 +2,7 @@
 
 A fun mini-project to learn about flask apis and prank cs135 students. Made with the goal to make the project more interesting.
 
-The project is deployed at pythonanywhere: http://proto007.pythonanywhere.com/counter
+The project is deployed at pythonanywhere: http://proto007.pythonanywhere.com/
 # Demo
 Students are greeted with a hint for the project if they are having difficulty with it:
 
