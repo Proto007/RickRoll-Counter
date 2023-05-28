@@ -12,9 +12,16 @@ class Counter(db.Model):
 
 @app.route('/counter', methods=['POST'])
 def increment_counter():
-    counter = Counter.query.filter_by(id=1).first()
-    counter.count += 1
-    db.session.commit()
+    try:
+        counter = Counter.query.filter_by(id=1).first()
+        counter.count += 1
+        db.session.commit()
+    except Exception:
+        db.create_all()
+        db.session.add(Counter(count=0))
+        counter = Counter.query.filter_by(id=1).first()
+        counter.count += 1
+        db.session.commit()
     return render_template("home.html", count=counter.count)
 
 @app.route('/counter', methods=['GET'])
@@ -29,6 +36,4 @@ def show_count():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-        db.session.add(Counter(count=0))
-        db.session.commit()
     app.run(debug=True)
